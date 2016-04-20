@@ -175,6 +175,11 @@ module SendGrid
         end
       end
 
+      if attachments.empty? and !contents.empty?
+        if payload[:files].has_key?(":default")
+          payload[:files].delete(":default")
+        end
+      end
       payload
     end
     # rubocop:enable Style/HashSyntax
